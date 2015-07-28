@@ -6,7 +6,6 @@ use Exception;
 
 class PHPToJavaScriptTransformer
 {
-
     /**
      * The namespace to nest JS vars under.
      *
@@ -32,7 +31,7 @@ class PHPToJavaScriptTransformer
         'Object',
         'Numeric',
         'Boolean',
-        'Null'
+        'Null',
     ];
 
     /**
@@ -41,9 +40,8 @@ class PHPToJavaScriptTransformer
      * @param ViewBinder $viewBinder
      * @param string     $namespace
      */
-    function __construct(ViewBinder $viewBinder, $namespace = 'window')
+    public function __construct($namespace = 'window')
     {
-        $this->viewBinder = $viewBinder;
         $this->namespace = $namespace;
     }
 
@@ -56,18 +54,15 @@ class PHPToJavaScriptTransformer
     {
         // First, we have to translate the variables
         // to something JS-friendly.
-        $js = $this->buildJavaScriptSyntax($variables);
-
-        // And then we'll actually bind those
-        // variables to the view.
-        $this->viewBinder->bind($js);
+        return $this->buildJavaScriptSyntax($variables);
     }
 
     /**
      * Translate the array of PHP vars to
      * the expected JavaScript syntax.
      *
-     * @param  array $vars
+     * @param array $vars
+     *
      * @return array
      */
     public function buildJavaScriptSyntax(array $vars)
@@ -95,8 +90,9 @@ class PHPToJavaScriptTransformer
     /**
      * Translate a single PHP var to JS.
      *
-     * @param  string $key
-     * @param  string $value
+     * @param string $key
+     * @param string $value
+     *
      * @return string
      */
     protected function buildVariableInitialization($key, $value)
@@ -107,8 +103,10 @@ class PHPToJavaScriptTransformer
     /**
      * Format a value for JavaScript.
      *
-     * @param  string $value
+     * @param string $value
+     *
      * @throws \Exception
+     *
      * @return mixed
      */
     protected function optimizeValueForJavaScript($value)
@@ -118,7 +116,7 @@ class PHPToJavaScriptTransformer
         foreach ($this->types as $transformer) {
             $js = $this->{"transform{$transformer}"}($value);
 
-            if ( ! is_null($js)) {
+            if (!is_null($js)) {
                 return $js;
             }
         }
@@ -127,7 +125,8 @@ class PHPToJavaScriptTransformer
     /**
      * Transform a string.
      *
-     * @param  string $value
+     * @param string $value
+     *
      * @return string
      */
     protected function transformString($value)
@@ -140,7 +139,8 @@ class PHPToJavaScriptTransformer
     /**
      * Transform an array.
      *
-     * @param  array  $value
+     * @param array $value
+     *
      * @return string
      */
     protected function transformArray($value)
@@ -153,7 +153,8 @@ class PHPToJavaScriptTransformer
     /**
      * Transform a numeric value.
      *
-     * @param  mixed $value
+     * @param mixed $value
+     *
      * @return mixed
      */
     protected function transformNumeric($value)
@@ -166,7 +167,8 @@ class PHPToJavaScriptTransformer
     /**
      * Transform a boolean.
      *
-     * @param  boolean $value
+     * @param bool $value
+     *
      * @return string
      */
     protected function transformBoolean($value)
@@ -179,8 +181,10 @@ class PHPToJavaScriptTransformer
     /**
      * Transform an object.
      *
-     * @param  object $value
+     * @param object $value
+     *
      * @return string
+     *
      * @throws \Exception
      */
     protected function transformObject($value)
@@ -194,7 +198,7 @@ class PHPToJavaScriptTransformer
 
             // Otherwise, if the object doesn't even have
             // a toString method, we can't proceed.
-            if ( ! method_exists($value, '__toString')) {
+            if (!method_exists($value, '__toString')) {
                 throw new Exception('The provided object needs a __toString() method.');
             }
 
@@ -203,9 +207,10 @@ class PHPToJavaScriptTransformer
     }
 
     /**
-     * Transform "null."
+     * Transform "null.".
      *
-     * @param  mixed $value
+     * @param mixed $value
+     *
      * @return string
      */
     protected function transformNull($value)
@@ -218,12 +223,12 @@ class PHPToJavaScriptTransformer
     /**
      * Escape any single quotes.
      *
-     * @param  string $value
+     * @param string $value
+     *
      * @return string
      */
     protected function escape($value)
     {
-        return str_replace(["\\", "'"], ["\\\\", "\'"], $value);
+        return str_replace(['\\', "'"], ['\\\\', "\'"], $value);
     }
-
-} 
+}
