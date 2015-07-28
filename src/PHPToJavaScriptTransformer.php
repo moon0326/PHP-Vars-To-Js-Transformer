@@ -14,13 +14,6 @@ class PHPToJavaScriptTransformer
     protected $namespace;
 
     /**
-     * What binds the variables to the views.
-     *
-     * @var ViewBinder
-     */
-    protected $viewBinder;
-
-    /**
      * All transformable types.
      *
      * @var array
@@ -57,6 +50,11 @@ class PHPToJavaScriptTransformer
         $this->vars[$key] = $value;
 
         return $this;
+    }
+
+    public function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
     }
 
     public function count()

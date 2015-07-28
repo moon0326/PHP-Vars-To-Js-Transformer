@@ -13,6 +13,6 @@ class JavascriptFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Javascript';
+        return 'JavaScript';
     }
 }

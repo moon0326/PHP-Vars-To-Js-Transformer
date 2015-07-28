@@ -12,6 +12,9 @@ class JavascriptServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind('JavaScript', function ($app) {
+            return new PHPToJavaScriptTransformer();
+        });
     }
 
     /**
@@ -21,7 +24,7 @@ class JavascriptServiceProvider extends ServiceProvider
     {
         AliasLoader::getInstance()->alias(
             'JavaScript',
-            'Moon\PHPToJavaScriptTransformer\JavaScriptFacade'
+            'Moon\Utilities\Javascript\JavaScriptFacade'
         );
     }
 }
