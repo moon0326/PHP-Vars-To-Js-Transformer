@@ -1,6 +1,6 @@
 <?php
 
-namespace Laracasts\Utilities\JavaScript;
+namespace Moon\Utilities\Javascript;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
@@ -21,7 +21,7 @@ class JavascriptServiceProvider extends ServiceProvider
     {
         AliasLoader::getInstance()->alias(
             'JavaScript',
-            'Laracasts\Utilities\JavaScript\JavaScriptFacade'
+            'Moon\PHPToJavaScriptTransformer\JavaScriptFacade'
         );
     }
 }

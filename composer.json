@@ -1,5 +1,5 @@
 {
-    "name": "laracasts/utilities",
+    "name": "moon/phptojs",
     "description": "Transform your PHP to JavaScript",
     "keywords": ["laravel", "javascript"],
     "license": "MIT",
@@ -7,6 +7,10 @@
         {
             "name": "Jeffrey Way",
             "email": "jeffrey@laracasts.com"
+        },
+        {
+            "name": "Moon",
+            "email": "kmk1986@gmail.com"
         }
     ],
     "require": {
@@ -18,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Laracasts\\Utilities\\JavaScript\\": "src/"
+            "Moon\\Utilities\\JavaScript\\": "src/"
         }
     }
 }

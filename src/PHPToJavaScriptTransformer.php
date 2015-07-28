@@ -1,6 +1,6 @@
 <?php
 
-namespace Laracasts\Utilities\JavaScript;
+namespace Moon\Utilities\Javascript;
 
 use Exception;
 
@@ -35,6 +35,13 @@ class PHPToJavaScriptTransformer
     ];
 
     /**
+     * Variables to be binded.
+     *
+     * @var array
+     */
+    protected $vars = [];
+
+    /**
      * Create a new JS transformer instance.
      *
      * @param ViewBinder $viewBinder
@@ -45,6 +52,13 @@ class PHPToJavaScriptTransformer
         $this->namespace = $namespace;
     }
 
+    public function set($key, $value = null)
+    {
+        $this->vars[$key] = $value;
+
+        return $this;
+    }
+
     /**
      * Bind the given array of variables to the view.
      *
@@ -52,9 +66,9 @@ class PHPToJavaScriptTransformer
      */
     public function put(array $variables)
     {
-        // First, we have to translate the variables
-        // to something JS-friendly.
-        return $this->buildJavaScriptSyntax($variables);
+        $this->vars = $variables;
+
+        return $this;
     }
 
     /**
@@ -65,9 +79,11 @@ class PHPToJavaScriptTransformer
      *
      * @return array
      */
-    public function buildJavaScriptSyntax(array $vars)
+    public function transform(array $vars = [])
     {
         $js = $this->buildNamespaceDeclaration();
+
+        $vars = array_merge($this->vars, $vars);
 
         foreach ($vars as $key => $value) {
             $js .= $this->buildVariableInitialization($key, $value);

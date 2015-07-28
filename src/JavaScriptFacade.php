@@ -1,12 +1,11 @@
 <?php
 
-namespace Laracasts\Utilities\JavaScript;
+namespace Moon\Utilities\Javascript;
 
 use Illuminate\Support\Facades\Facade;
 
-class JavaScriptFacade extends Facade
+class JavascriptFacade extends Facade
 {
-
     /**
      * The name of the binding in the IoC container.
      *
@@ -14,6 +13,6 @@ class JavaScriptFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'JavaScript';
+        return 'Javascript';
     }
 }
