@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Moon\\Utilities\\JavaScript\\": "src/"
+            "Moon\\Utilities\\Javascript\\": "src/"
         }
     }
 }

@@ -9,6 +9,14 @@ Goal of this fork: Remove framework and ViewBinder dependency to make it usable 
 * Added set($key, $value)
 * Replaced buildJavaScriptSyntax(array $vars) with build(array $vars). build(array $vars) collects variables set by set($key, $value) and return transformed javascript variables.
 
+#### Installation
+
+{
+    "require": {
+        "moon/utilities-javascript": "~1.0"
+    }
+}
+
 #### Usage
 
 ```php
@@ -16,12 +24,12 @@ use Moon\Utilities\Javascript\PHPToJavaScriptTransformer;
 
 $transformer = new PHPToJavaScriptTransformer;
 
-// example 1 
+// example 1
 $javascript = $transformer->set('name', 'moon')
 			->set('age', 999999)
             ->transform()
 
-// example 2 
+// example 2
 $javascript = $transformer->transform([
 	'name' => 'moon',
     'age' => 999999
