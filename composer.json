@@ -1,5 +1,5 @@
 {
-    "name": "moon/phptojs",
+    "name": "moon/utilities-javascript",
     "description": "Transform your PHP to JavaScript",
     "keywords": ["laravel", "javascript"],
     "license": "MIT",
