@@ -59,6 +59,11 @@ class PHPToJavaScriptTransformer
         return $this;
     }
 
+    public function count()
+    {
+        return count($this->vars);
+    }
+
     /**
      * Bind the given array of variables to the view.
      *
